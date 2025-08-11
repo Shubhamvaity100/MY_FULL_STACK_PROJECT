@@ -1,0 +1,30 @@
+version: "3.8"
+
+services:
+  app:
+    build: .
+    container_name: travel_app
+    ports:
+      - "3000:3000"
+    env_file:
+      - .env
+    environment:
+      - PORT=3000
+      - MONGO_URI=mongodb://mongo:27017/travelDB
+      - SESSION_SECRET=supersecretstring
+      - CLOUDINARY_CLOUD_NAME=drq00migq
+      - CLOUDINARY_API_KEY=386553665136426
+      - CLOUDINARY_API_SECRET=y3flQzFQasLYvTyZiIOkr-_stR4
+    depends_on:
+      - mongo
+
+  mongo:
+    image: mongo:6
+    container_name: travel_mongo
+    ports:
+      - "27017:27017"
+    volumes:
+      - mongo_data:/data/db
+
+volumes:
+  mongo_data:

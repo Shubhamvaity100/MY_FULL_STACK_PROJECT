@@ -1,0 +1,98 @@
+<% layout('/layouts/boilerplate') -%>
+
+<!-- Reduced top space using mb-3 only -->
+
+<style>
+  #filters{
+    display: flex;
+    flex-wrap: wrap;
+  }
+
+  .filter{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-right: 40px;
+    margin-top: 10px;
+  }
+
+  .filter:hover{
+    opacity: 0.7;
+    cursor: pointer;
+  }
+
+.filter p {
+  font-size: 0.8em;
+}
+
+
+
+
+
+</style>
+
+<div id="filters">
+  <div class="filter">
+    <div><i class="fa-solid fa-fire"></i></div>
+    <p>Trending</p>
+  </div>
+   <div class="filter">
+    <div><i class="fa-solid fa-bed"></i></div>
+    <p>Rooms</p>
+  </div>
+<div class="filter">
+    <div><i class="fa-solid fa-mountain"></i></div>
+    <p>Mountain</p>
+  </div>
+
+  <div class="filter">
+    <div><i class="fa-solid fa-fort-awesome"></i></div>
+    <p>Castles</p>
+  </div>
+
+    <div class="filter">
+    <div><i class="fa-solid fa-person-swimming"></i></div>
+    <p>Amazing Pools</p>
+  </div>
+
+   <div class="filter">
+    <div><i class="fa-solid fa-campground"></i></div>
+    <p>Camping</p>
+  </div>
+
+   <div class="filter">
+    <div><i class="fa-solid fa-cow"></i></div>
+    <p>Farms</p>
+  </div>
+
+   <div class="filter">
+    <div><i class="fa-solid fa-snowflake"></i></div>
+    <p>Arctic</p>
+  </div>
+
+</div>
+
+<div class="row gx-3 gy-4">
+  <% allListings.forEach(listing => { %>
+  <div class="col-lg-3 col-md-4 col-sm-6">
+    <div class="card h-100 shadow-sm">
+      <a href="/listings/<%= listing._id %>" class="text-decoration-none">
+        <div class="ratio ratio-4x3">
+          <img
+            src="<%= listing.image.url %>"
+            class="card-img-top"
+            alt="listing_image"
+            style="object-fit: cover"
+          />
+        </div>
+      </a>
+      <div class="card-body p-2">
+        <h6 class="card-title mb-1 fw-bold"><%= listing.title %></h6>
+        <p class="card-text text-muted small mb-0">
+          &#8377;<%= listing.price.toLocaleString("en-IN") %> / Night
+        </p>
+      </div>
+    </div>
+  </div>
+  <% }) %>
+</div>
