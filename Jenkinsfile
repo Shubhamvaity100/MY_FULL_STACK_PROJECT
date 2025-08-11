@@ -27,7 +27,8 @@ pipeline {
                     sh 'docker rm my-app-container || true'
 
                     // Run the new container from the newly built image in the background
-                    sh 'docker run -d --name my-app-container -p 8080:3000 major-project:$BUILD_NUMBER'
+                    
+                    sh 'docker run -d --name my-app-container -p 8000:3000 major-project:$BUILD_NUMBER'
                 }
             }
         }
