@@ -73,7 +73,8 @@ app.engine("ejs", ejsMate);
 // MongoDB connection
 // MongoDB connection
 // Make sure this line looks EXACTLY like this:
-const MONGO_URL = process.env.MONGO_URI || "mongodb://host.docker.internal:27017/wanderlust";
+// const MONGO_URL = process.env.MONGO_URI || "mongodb://host.docker.internal:27017/wanderlust";
+const MONGO_URL = process.env.MONGO_URI;
 
 main().catch((err) => {
   console.log("Database connection error:", err);

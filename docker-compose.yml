@@ -1,30 +1,44 @@
+# Specifies the version of the Docker Compose file format.
 version: "3.8"
 
+# Defines the services (containers) that make up your application.
 services:
+  # The service for your Node.js application.
   app:
+    # Tells Docker Compose to build the image from the Dockerfile in the current directory.
     build: .
-    container_name: travel_app
+    # Gives the container a memorable name.
+    container_name: wanderlust_app
+    # Maps port 3000 on your computer to port 3000 in the container.
     ports:
       - "3000:3000"
+    # Securely loads all environment variables from your .env file.
     env_file:
       - .env
-    environment:
-      - PORT=3000
-      - MONGO_URI=mongodb://mongo:27017/travelDB
-      - SESSION_SECRET=supersecretstring
-      - CLOUDINARY_CLOUD_NAME=drq00migq
-      - CLOUDINARY_API_KEY=386553665136426
-      - CLOUDINARY_API_SECRET=y3flQzFQasLYvTyZiIOkr-_stR4
+    # Mounts your local project directory into the container.
+    # This enables live-reloading: change code on your machine, see it update in the container.
+    volumes:
+      - .:/usr/src/app
+      # This prevents your local node_modules from overwriting the one in the container.
+      - /usr/src/app/node_modules
+    # Makes the 'app' service depend on the 'mongo' service.
+    # This ensures the database starts before your application does.
     depends_on:
       - mongo
 
+  # The service for your MongoDB database.
   mongo:
+    # Uses the official MongoDB image from Docker Hub.
     image: mongo:6
-    container_name: travel_mongo
+    # Gives the container a memorable name.
+    container_name: wanderlust_mongo
+    # Maps the default MongoDB port.
     ports:
       - "27017:27017"
+    # Creates a persistent volume to save your database data even if the container stops.
     volumes:
       - mongo_data:/data/db
 
+# Defines the named volumes used by the services.
 volumes:
   mongo_data:
