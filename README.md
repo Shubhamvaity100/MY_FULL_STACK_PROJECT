@@ -1,4 +1,4 @@
-# 🏡 Travel Booking App (Airbnb Clone)
+# 🏡 Travel Booking App 
 
 A full-stack travel booking platform inspired by Airbnb, built with **Node.js, Express, EJS, MongoDB**.  
 This project demonstrates both **full-stack development** and **DevOps practices** using Docker and Jenkins.
